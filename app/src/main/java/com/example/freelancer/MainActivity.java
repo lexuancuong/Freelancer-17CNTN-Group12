@@ -32,24 +32,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txtUsername = (TextView)findViewById(R.id.txtUsername);
-        txtPassword = (TextView)findViewById(R.id.txtPassword);
-        btnLogin = (Button)findViewById(R.id.btnLogin);
-        txtRegister = (TextView) findViewById(R.id.txtRegister);
-        Token g = new Token();
-        g.setToken("asjdhjkashdjahsdh");
-        String tmp = g.getToken();
-        showToast(tmp);
+        connectLayout();
+        event();
+    }
 
+    private void event() {
         txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("xxxx", "This is my messageasdasdas");
                 Intent i = new Intent(MainActivity.this, Register.class);
-                Log.d("xxxx", "This is my messageasdasdas");
-
                 startActivity(i);
-                showToast("hasdahdjahsjdasd");
             }
         });
 
@@ -58,19 +50,28 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String stringUsername = txtUsername.getText().toString().trim();
                 String stringPassword = txtPassword.getText().toString().trim();
-                new LoginUser().execute(stringUsername, stringPassword);
+                new LoginUser().execute(login_url,stringUsername, stringPassword);
             }
         });
 
     }
+
+    private void connectLayout() {
+        txtUsername = (TextView)findViewById(R.id.txtUsername);
+        txtPassword = (TextView)findViewById(R.id.txtPassword);
+        btnLogin = (Button)findViewById(R.id.btnLogin);
+        txtRegister = (TextView) findViewById(R.id.txtRegister);
+    }
+
 
     public class LoginUser extends AsyncTask<String,Void,String>{
         @Override
         protected String doInBackground(String...strings)
         {
             //get username and password from str input
-            String txtUsername = strings[0];
-            String txtPassword = strings[1];
+            String url = strings[0];
+            String txtUsername = strings[1];
+            String txtPassword = strings[2];
 
             //Initiate server request
             OkHttpClient okHttpClient= new OkHttpClient();
@@ -79,21 +80,20 @@ public class MainActivity extends AppCompatActivity {
                     .add("password", txtPassword)
                     .build();
 
-            Request request = new Request.Builder()
-                    .url(login_url)
-                    .post(formBody)
-                    .build();
-
+            DAO data = new DAO();
             //checking whether we are getting response from server or not
             Response response = null;
             try{
-                response = okHttpClient.newCall(request).execute();
+                response = data.doPostRequest("",url,formBody);
                 if(response.isSuccessful())
                 {
                     String jsonData = response.body().string();
                     JSONObject Jobject = new JSONObject(jsonData);
                     String strToken = Jobject.get("token").toString();
                     showToast("Login Sucessly");
+                    Intent intent = new Intent(MainActivity.this,HireJob.class);
+                    intent.putExtra("token",strToken);
+                    startActivity(intent);
                 }
                 else
                 {
