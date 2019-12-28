@@ -18,6 +18,8 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
@@ -34,6 +36,7 @@ public class HireJob extends AppCompatActivity {
     private ProgressDialog waiting;
     private String _token;
     private final String hire_url = "https://its-freelancer.herokuapp.com/api/transaction";
+    private boolean success = false;
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -45,10 +48,10 @@ public class HireJob extends AppCompatActivity {
         connectLayout();
         getJobData();
         showJobData();
-        eventRequest();
+        event();
     }
 
-    private void eventRequest() {
+    private void event() {
         _bt_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +66,11 @@ public class HireJob extends AppCompatActivity {
                     int id_job = _job.get_id();
                     int price_job = _job.get_price().get(idx);
                     new putRequest().execute(hire_url,String.valueOf(id_job),String.valueOf(price_job));
+                    if (success == true){
+                        Intent intent = new Intent();
+                        setResult(0);
+                        finish();
+                    }
                 }
             }
         });
@@ -131,21 +139,26 @@ public class HireJob extends AppCompatActivity {
             String price_job = strings[2];
 
             //Initiate server request
-            DAO post = new DAO();
-            RequestBody requestBody = new FormBody.Builder()
+            OkHttpClient okHttpClient= new OkHttpClient();
+            RequestBody formBody = new FormBody.Builder()
                     .add("jobID",id_job)
                     .add("price",price_job)
                     .build();
+            Request request = new Request.Builder()
+                    .addHeader("Authorization",_token)
+                    .url(url)
+                    .post(formBody)
+                    .build();
+
             //checking whether we are getting response from server or not
             Response response= null;
 
             try {
-                response = post.doPostRequest(_token,url,requestBody);
+                response= okHttpClient.newCall(request).execute();
                 if(response.isSuccessful())
                 {
                     String result= response.body().string();
-                    showToast("Register Successfully, please Login");
-                    finish();
+                    success = true;
                 }
                 else
                 {

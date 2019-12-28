@@ -1,5 +1,6 @@
 package com.example.freelancer;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,7 +39,7 @@ public class JobList extends AppCompatActivity {
         getToken();
         connectLayout();
         getListJob();
-        eventRequest();
+        event();
     }
 
     private void getToken() {
@@ -46,7 +47,7 @@ public class JobList extends AppCompatActivity {
         _token = intent.getExtras().getString("token");
     }
 
-    private void eventRequest() {
+    private void event() {
         _lv_job.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,9 +57,21 @@ public class JobList extends AppCompatActivity {
                 bundle.putSerializable("job",(Serializable) job);
                 intent.putExtra("bundle",bundle);
                 intent.putExtra("_token", _token);
-                startActivity(intent);
+                startActivityForResult(intent,10);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode)
+        {
+            case 10:
+                if (resultCode == 0){
+                    showToast("Hire job successfully");
+                }
+        }
     }
 
     private void showListJob() {
@@ -109,7 +122,6 @@ public class JobList extends AppCompatActivity {
                     String type = jsonObject.getString("type");
                     String username = jsonObject.getString("username");
                     String fullname = jsonObject.getString("fullname");
-                    showToast(fullname);
                     JSONArray jsonArray1 = jsonObject.getJSONArray("price_list");
                     ArrayList<Integer> price = new ArrayList<>();
                     ArrayList<String> price_des = new ArrayList<>();

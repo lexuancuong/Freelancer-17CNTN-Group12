@@ -21,7 +21,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Register extends AppCompatActivity {
-
     private EditText txtUsername, txtPassword, txtEmail, txtPhone;
     private Button btnRegister;
     private final String urlRegister = "https://its-freelancer.herokuapp.com/api/account/register";
@@ -32,8 +31,6 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.register);
         connectLayout();
         event();
-
-
     }
 
     private void event() {
@@ -79,11 +76,16 @@ public class Register extends AppCompatActivity {
                     .add("phone",txtPhone)
                     .build();
 
-            DAO data = new DAO();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(formBody)
+                    .build();
+
             //checking whether we are getting response from server or not
-            Response response = null;
-            try{
-                response = data.doPostRequest("",url,formBody);
+            Response response= null;
+
+            try {
+                response= okHttpClient.newCall(request).execute();
                 if(response.isSuccessful())
                 {
                     String result= response.body().string();

@@ -80,18 +80,23 @@ public class MainActivity extends AppCompatActivity {
                     .add("password", txtPassword)
                     .build();
 
-            DAO data = new DAO();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(formBody)
+                    .build();
+
             //checking whether we are getting response from server or not
-            Response response = null;
-            try{
-                response = data.doPostRequest("",url,formBody);
+            Response response= null;
+
+            try {
+                response= okHttpClient.newCall(request).execute();
                 if(response.isSuccessful())
                 {
                     String jsonData = response.body().string();
                     JSONObject Jobject = new JSONObject(jsonData);
                     String strToken = Jobject.get("token").toString();
                     showToast("Login Sucessly");
-                    Intent intent = new Intent(MainActivity.this,HireJob.class);
+                    Intent intent = new Intent(MainActivity.this,JobList.class);
                     intent.putExtra("token",strToken);
                     startActivity(intent);
                 }
