@@ -18,6 +18,7 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -37,6 +38,8 @@ public class HireJob extends AppCompatActivity {
     private String _token;
     private final String hire_url = "https://its-freelancer.herokuapp.com/api/transaction";
     private boolean success = false;
+    private String msg;
+    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -59,7 +62,7 @@ public class HireJob extends AppCompatActivity {
                 RadioButton radioButton = HireJob.this.findViewById(id_radio_button);
                 if (radioButton == null)
                 {
-                    showToast("you have to seclet one price");
+                    showToast("Hãy chọn một giá");
                 }
                 else{
                     int idx = _job_group_price.indexOfChild(radioButton);
@@ -67,14 +70,13 @@ public class HireJob extends AppCompatActivity {
                     int price_job = _job.get_price().get(idx);
                     new putRequest().execute(hire_url,String.valueOf(id_job),String.valueOf(price_job));
                     if (success == true){
-                        Intent intent = new Intent();
-                        setResult(0);
                         finish();
                     }
                 }
             }
         });
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void showJobData() {
@@ -97,7 +99,6 @@ public class HireJob extends AppCompatActivity {
         Bundle bundle = intent.getBundleExtra("bundle");
         _job = (Job) bundle.getSerializable("job");
         _token = intent.getExtras().getString("token");
-
     }
 
     private void connectLayout() {
@@ -141,11 +142,11 @@ public class HireJob extends AppCompatActivity {
             //Initiate server request
             OkHttpClient okHttpClient= new OkHttpClient();
             RequestBody formBody = new FormBody.Builder()
-                    .add("jobID",id_job)
+                    .add("jobId",id_job)
                     .add("price",price_job)
                     .build();
             Request request = new Request.Builder()
-                    .addHeader("Authorization",_token)
+                    .addHeader("Authorization","Bearer "+_token)
                     .url(url)
                     .post(formBody)
                     .build();
@@ -159,14 +160,13 @@ public class HireJob extends AppCompatActivity {
                 {
                     String result= response.body().string();
                     success = true;
+                    msg = "Gửi yêu cầu thành công";
                 }
                 else
                 {
                     String result= response.body().string();
                     JSONObject Jobject = new JSONObject(result);
-                    String strToken = Jobject.get("message").toString();
-                    showToast(strToken);
-
+                    msg = Jobject.get("message").toString();
                 }
 
             }
@@ -181,6 +181,7 @@ public class HireJob extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             waiting.dismiss();
+            showToast(msg);
         }
 
     }
