@@ -20,18 +20,19 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
-
     private TextView txtUsername;
     private TextView txtPassword;
     private Button btnLogin;
     private TextView txtRegister;
     final String login_url = "https://its-freelancer.herokuapp.com/api/account/login";
+    private Token t;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        t = new Token();
         connectLayout();
         event();
     }
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String...strings)
         {
+            Log.d("xxxxx","ssdfsdfsdfsdfds");
+
             //get username and password from str input
             String url = strings[0];
             String txtUsername = strings[1];
@@ -92,17 +95,21 @@ public class MainActivity extends AppCompatActivity {
                 response= okHttpClient.newCall(request).execute();
                 if(response.isSuccessful())
                 {
+                    Log.d("xxxxx","thanh cong");
                     String jsonData = response.body().string();
                     JSONObject Jobject = new JSONObject(jsonData);
                     String strToken = Jobject.get("token").toString();
-                    showToast("Login Sucessly");
+                    t.setToken(strToken);
+
+                    showToast("Đăng nhập thành công");
                     Intent intent = new Intent(MainActivity.this,JobList.class);
                     intent.putExtra("token",strToken);
                     startActivity(intent);
+                    finish();
                 }
                 else
                 {
-                    showToast("Wrong Username or password");
+                    showToast("Sai tên tài khoản hoặc mật khẩu");
                 }
 
             } catch (Exception e){
@@ -117,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Toast.makeText(MainActivity.this,
-                        Text, Toast.LENGTH_LONG).show();
+                        Text, Toast.LENGTH_SHORT).show();
             }
         });
     }

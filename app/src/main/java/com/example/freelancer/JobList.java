@@ -56,23 +56,12 @@ public class JobList extends AppCompatActivity {
                 Job job = _list_job.get(position);
                 bundle.putSerializable("job",(Serializable) job);
                 intent.putExtra("bundle",bundle);
-                intent.putExtra("_token", _token);
-                startActivityForResult(intent,10);
+                intent.putExtra("token", _token);
+                startActivity(intent);
             }
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode)
-        {
-            case 10:
-                if (resultCode == 0){
-                    showToast("Hire job successfully");
-                }
-        }
-    }
 
     private void showListJob() {
         if (_list_job != null) {

@@ -10,20 +10,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp">
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balance:"
+            android:textSize="20dp"
+            android:layout_marginLeft="50dp"/>
+
+        <TextView
+            android:id="@+id/txtBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="null"
+            android:textSize="20dp" />
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Balance:"
-        android:textSize="20dp"
-        android:layout_marginLeft="50dp"/>
-    <TextView
-        android:layout_marginLeft="20dp"
-        android:id="@+id/txtBalance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="0"
-        />
+        android:orientation="horizontal">
+        <Button
+            android:layout_marginLeft="80dp"
+            android:id="@+id/btnTopup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Top up"/>
+        <Button
+            android:layout_marginLeft="20dp"
+            android:id="@+id/btnWithdraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="With-draw"></Button>
 
     </LinearLayout>
 
