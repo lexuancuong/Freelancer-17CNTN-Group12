@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,12 +31,14 @@ public class JobList extends AppCompatActivity {
     private ProgressDialog _loading;
     private String _token = "";
     private final String _get_url = "https://its-freelancer.herokuapp.com/api/job/";
+    private Button btnUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_list);
-        setTitle("Công việc");
+        btnUser = (Button)findViewById(R.id.btnAccount);
         getToken();
         connectLayout();
         getListJob();
@@ -47,7 +50,12 @@ public class JobList extends AppCompatActivity {
         _token = intent.getExtras().getString("token");
     }
 
-    private void event() {
+    private void event(){
+        btnUser.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v)
+        {
+            Intent intent = new Intent(JobList.this,SettingUser.class);
+            startActivity(intent);
+        }});
         _lv_job.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
