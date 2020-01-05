@@ -33,6 +33,7 @@ public class JobList extends AppCompatActivity {
     private final String _get_url = "https://its-freelancer.herokuapp.com/api/job/";
     private Button btnUser;
 
+    private Button _btn_post_job;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,17 @@ public class JobList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        _btn_post_job.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(JobList.this,PostJob.class);
+                Bundle bundle=new Bundle();
+                intent.putExtra("bundle",bundle);
+
+                intent.putExtra("token",_token);
+                startActivityForResult(intent,10);
+            }
+        });
     }
 
 
@@ -86,6 +98,7 @@ public class JobList extends AppCompatActivity {
     private void connectLayout() {
         _loading = new ProgressDialog(this.getBaseContext());
         _lv_job = this.findViewById(R.id.list_job);
+        _btn_post_job=this.findViewById(R.id.buttonPostJob);
     }
 
     private class FetchJobsAsyncTask extends AsyncTask<String, String, String> {
