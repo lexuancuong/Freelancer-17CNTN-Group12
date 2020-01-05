@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PostJob"></activity>
+        <activity android:name=".ShowListTransaction"></activity>
+        <activity android:name=".ShowTransaction" />
+        <activity android:name=".PostJob" />
         <activity android:name=".TopUpDialog" />
         <activity android:name=".SettingUser" />
         <activity android:name=".HireJob" />

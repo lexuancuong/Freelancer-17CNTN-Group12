@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShowTransaction"
+    android:background="#00BCD4"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="#0EA0E2">
+                <TextView
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID: "
+                    android:layout_weight="1"></TextView>
+
+                <TextView
+                    android:text="1"
+                    android:layout_weight="1"
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtTransactionID"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="#0EA0E2">
+                <TextView
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username Buyer: "
+                    android:layout_weight="1"></TextView>
+
+                <TextView
+                    android:text="Client1"
+
+                    android:layout_weight="1"
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtTransactionBuyerUsername"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="#0EA0E2">
+                <TextView
+
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price: "
+                    android:layout_weight="1"></TextView>
+
+                <TextView
+                    android:text="1000000VND"
+
+                    android:layout_weight="1"
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtTransactionPrice"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="#0EA0E2">
+                <TextView
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price Description: "
+                    android:layout_weight="1"></TextView>
+
+                <TextView
+                    android:text="Regular, delivery within 3 months"
+                    android:layout_weight="1"
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtTransactionDescription"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="#0EA0E2">
+                <TextView
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Created at:  "
+                    android:layout_weight="1"></TextView>
+
+                <TextView
+                    android:text="2020-01-05T07:00:43.201Z"
+                    android:layout_weight="1"
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtTransactionDate"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="#0EA0E2">
+                <TextView
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Job Id:  "
+                    android:layout_weight="1"></TextView>
+
+                <TextView
+                    android:text="1"
+                    android:id="@+id/txtTransactionJobID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#ffff"
+                    android:textSize="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="#0EA0E2">
+                <TextView
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Job name:  "
+                    android:layout_weight="1"></TextView>
+
+                <TextView
+                    android:text="React.js Developer"
+                    android:layout_weight="1"
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtTransactionJobName"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="#0EA0E2">
+                <TextView
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Job Description:  "
+                    android:layout_weight="1"></TextView>
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:text="Develop webapps using React.js framework"
+                    android:id="@+id/txtTransactionJobDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#ffff"
+                    android:textSize="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="#0EA0E2">
+                <TextView
+                    android:textColor="#ffff"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status:  "
+                    android:layout_weight="1"></TextView>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="#F50303"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:text="Doing"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtTransactionStatus"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class SettingUser extends AppCompatActivity {
     Button btnWallet;
+    Button btnCongviec;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +19,14 @@ public class SettingUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SettingUser.this, Wallet.class);
+                startActivity(i);
+            }
+        });
+        btnCongviec = (Button) findViewById(R.id.btnCongviecuaban);
+        btnCongviec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SettingUser.this, ShowListTransaction.class);
                 startActivity(i);
             }
         });
