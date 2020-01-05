@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     showToast("Đăng nhập thành công");
                     Intent intent = new Intent(MainActivity.this,JobList.class);
                     intent.putExtra("token",strToken);
+                    intent.putExtra("username",txtUsername);
                     startActivity(intent);
                     finish();
                 }

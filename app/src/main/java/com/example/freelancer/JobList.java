@@ -30,6 +30,7 @@ public class JobList extends AppCompatActivity {
     private ListView _lv_job;
     private ProgressDialog _loading;
     private String _token = "";
+    private String _username;
     private final String _get_url = "https://its-freelancer.herokuapp.com/api/job/";
     private Button btnUser;
 
@@ -49,6 +50,7 @@ public class JobList extends AppCompatActivity {
     private void getToken() {
         Intent intent = getIntent();
         _token = intent.getExtras().getString("token");
+        _username=intent.getExtras().getString("username");
     }
 
     private void event(){
@@ -75,7 +77,7 @@ public class JobList extends AppCompatActivity {
                 Intent intent = new Intent(JobList.this,PostJob.class);
                 Bundle bundle=new Bundle();
                 intent.putExtra("bundle",bundle);
-
+                intent.putExtra("username",_username);
                 intent.putExtra("token",_token);
                 startActivityForResult(intent,10);
             }

@@ -1,5 +1,6 @@
 package com.example.freelancer;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,11 +20,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import okhttp3.FormBody;
@@ -33,6 +36,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okio.BufferedSink;
 
 public class PostJob extends AppCompatActivity {
 
@@ -49,6 +53,7 @@ public class PostJob extends AppCompatActivity {
     private Button _bt_post;
     private ProgressDialog waiting;
     private String _token;
+    private String _username;
     private final String post_url = "https://its-freelancer.herokuapp.com/api/job/";
     private boolean success = false;
 
@@ -85,6 +90,7 @@ public class PostJob extends AppCompatActivity {
     private void getToken() {
         Intent intent = this.getIntent();
         _token = intent.getExtras().getString("token");
+        _username=intent.getExtras().getString("username");
     }
 
     private void getJobTypes() {
@@ -107,20 +113,22 @@ public class PostJob extends AppCompatActivity {
                 try {
                     int nprices=_job_prices.size();
                     if (nprices<1){
-                        showToast("Chua co gia san pham");
+                        showToast("Chưa có sản phẩm");
                         return;
                     }
                     JSONArray jsonArray=new JSONArray();
                     for (int i=0;i<nprices;i++){
                         JSONObject jsonObject1=new JSONObject();
-                        jsonObject1.put("price",_job_prices.get(0));
-                        jsonObject1.put("description",_des_prices.get(0));
+                        jsonObject1.put("price",_job_prices.get(i));
+                        jsonObject1.put("description",_des_prices.get(i));
                         jsonArray.put(jsonObject1);
                     }
+                    Log.e("vipc", "onClick: "+ String.valueOf(_types_job_id_array.get(_job_types.getSelectedItemPosition())));
                     new PostRequest().execute(
                             post_url,
                             _job_name.getText().toString(),
                             _job_des.getText().toString(),
+                            _username,
                             _job_cv.getText().toString(),
                             String.valueOf(_types_job_id_array.get(_job_types.getSelectedItemPosition()))
                             ,
@@ -244,55 +252,57 @@ public class PostJob extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-            String url=strings[0];
-            String name=strings[1];
-            String des=strings[2];
-            String cv=strings[3];
-            String tydeids=strings[4];
-            String pricelist=strings[5];
-            String token=strings[6];
+            String url = strings[0];
+            String name = strings[1];
+            String description = strings[2];
+            String username=strings[3];
+            String cv_url = strings[4];
+            String type_id = strings[5];
+            String price_list = strings[6];
+            String token = strings[7];
             try {
-                RequestBody requestBody=new FormBody.Builder()
-                        .add("name",name.toString())
-                        .add("description",des.toString())
-                        .add("cv_url",cv.toString())
-                        .add("type_id",tydeids)
-                        .add("price_list",pricelist)
-                        .build();
-                DAO dao=new DAO();
+                final JSONObject body = new JSONObject();
+                body.put("name", name);
+                body.put("description", description);
+                //body.put("username",username);
+                body.put("cv_url", cv_url);
+                body.put("type_id", Integer.valueOf(type_id));
+                body.put("price_list", new JSONArray(price_list));
 
+                DAO dao = new DAO();
 
-                Response response=   dao.doPostRequest(token,url,requestBody);
-                if(response.isSuccessful())
-                {
-                    String result= response.body().string();
+                Response response = dao.doPostRequest(token, url, new RequestBody() {
+                    @Nullable
+                    @Override
+                    public MediaType contentType() {
+                        return MediaType.parse("application/json; charset=utf-8");
+                    }
+
+                    @Override
+                    public void writeTo(@NotNull BufferedSink bufferedSink) throws IOException {
+                        bufferedSink.writeString(body.toString(), Charset.defaultCharset());
+                    }
+                });
+                Log.e("vipc", "doInBackground: ");
+                if(response.isSuccessful()) {
                     success = true;
                     showToast("Dang thanh cong");
+
                     finish();
-                }
-                else
-                {
-                    String result= response.body().string();
-                    JSONObject Jobject = new JSONObject(result);
-                    String strToken = Jobject.get("message").toString();
-                    showToast(strToken);
 
-                }
 
+                } else {
+                    JSONObject jsonResponse = new JSONObject(response.body().string());
+                    String message = jsonResponse.get("message").toString();
+                    showToast(message);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-
             return null;
-
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
         }
     }
     public void showToast(final String Text){
@@ -302,5 +312,10 @@ public class PostJob extends AppCompatActivity {
                 Toast.makeText(PostJob.this, Text, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
     }
 }
