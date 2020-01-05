@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Balance:"
+            android:text="Số dư khả dụng:"
             android:textSize="20dp"
             android:layout_marginLeft="50dp"
             android:textColor="#ffff"
@@ -29,6 +29,14 @@
             android:text="null"
             android:textColor="#ffff"
             android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VNĐ"
+            android:textSize="20dp"
+            android:layout_marginLeft="50dp"
+            android:textColor="#ffff"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -41,13 +49,13 @@
             android:id="@+id/btnTopup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Top up"/>
+            android:text="Nạp tiền"/>
         <Button
             android:layout_marginLeft="20dp"
             android:id="@+id/btnWithdraw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="With-draw"></Button>
+            android:text="Rút tiền"></Button>
 
     </LinearLayout>
 

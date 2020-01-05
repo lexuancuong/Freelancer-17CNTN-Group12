@@ -30,6 +30,7 @@ public class Wallet extends AppCompatActivity implements TopUpDialog.ExampleDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
         t = new Token();
+        showToast(t.getToken());
         txtBalance = (TextView) findViewById(R.id.txtBalance);
         btnTopUp = (Button) findViewById(R.id.btnTopup);
         btnWithdraw = (Button) findViewById(R.id.btnWithdraw);
@@ -101,7 +102,7 @@ public class Wallet extends AppCompatActivity implements TopUpDialog.ExampleDial
                     String jsonData = response.body().string();
                     JSONObject Jobject = new JSONObject(jsonData);
                     String strBalance = Jobject.get("balance").toString();
-                    showToast("Your balance is " + strBalance);
+                    showToast("Your balance is" + strBalance);
                     publishProgress(strBalance);
                 }
                 else

@@ -45,23 +45,23 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         >
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:src="@drawable/wallet" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:src="@drawable/wallet" />
 
-    <Button
+        <Button
 
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Ví của tôi"
-        android:textColor="#ffff"
-        android:id="@+id/btnOpenWallet"
-        android:layout_weight="0.1"
-        android:background="#0EA0E2"
-        android:textSize="20dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Ví của tôi"
+            android:textColor="#ffff"
+            android:id="@+id/btnOpenWallet"
+            android:layout_weight="0.1"
+            android:background="#0EA0E2"
+            android:textSize="20dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="10dp"

@@ -41,21 +41,21 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 />
-        <EditText
-            android:id="@+id/txtUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/transparent"
-            android:drawablePadding="5dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:padding="0dp"
-            android:hint="Tên đăng nhập"
-            android:textColorHint="#ffffff"
-            android:maxLines="1"
-            android:drawableLeft="#161313" />
+            <EditText
+                android:id="@+id/txtUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:drawablePadding="5dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:padding="0dp"
+                android:hint="Tên đăng nhập"
+                android:textColorHint="#ffffff"
+                android:maxLines="1"
+                android:drawableLeft="#161313" />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -72,23 +72,23 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/txtPassword"
-            android:drawablePadding="0dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:textColorHint="#ffffff"
-            android:hint="Mật khẩu"
-            android:maxLines="1"
-            android:background="@android:color/transparent"
-            android:layout_marginTop="4dp"
-            android:drawableLeft="#A72525" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/txtPassword"
+                android:drawablePadding="0dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textColorHint="#ffffff"
+                android:hint="Mật khẩu"
+                android:maxLines="1"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="4dp"
+                android:drawableLeft="#A72525" />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
