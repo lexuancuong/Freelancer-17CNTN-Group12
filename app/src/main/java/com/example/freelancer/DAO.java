@@ -22,7 +22,7 @@ public class DAO {
     // post request code here
     Response doPostRequest(String token, String url, RequestBody body) throws IOException {
         Request request = new Request.Builder()
-                .addHeader("Authorization",token)
+                .addHeader("Authorization","Bearer "+ token)
                 .url(url)
                 .post(body)
                 .build();

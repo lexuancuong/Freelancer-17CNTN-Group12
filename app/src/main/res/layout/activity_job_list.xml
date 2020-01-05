@@ -30,9 +30,18 @@
             android:text="DANH SÁCH CÔNG VIỆC"
             android:layout_gravity="center"
             ></TextView>
+
+
     </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng Công việc"
+        android:id="@+id/buttonPostJob"
+
+        ></Button>
     <ListView
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
