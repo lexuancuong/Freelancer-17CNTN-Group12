@@ -5,17 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Wallet"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#00BCD4">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        android:gravity="left">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Balance:"
             android:textSize="20dp"
-            android:layout_marginLeft="50dp"/>
+            android:layout_marginLeft="50dp"
+            android:textColor="#ffff"
+            />
 
         <TextView
             android:id="@+id/txtBalance"
@@ -23,12 +27,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="null"
+            android:textColor="#ffff"
             android:textSize="20dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal">
         <Button
             android:layout_marginLeft="80dp"
             android:id="@+id/btnTopup"

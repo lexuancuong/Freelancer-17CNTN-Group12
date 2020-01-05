@@ -7,61 +7,176 @@
     tools:context=".SettingUser"
     android:orientation="vertical"
     android:layout_weight="1"
-    android:background="#00BCD4">
+    android:background="#00BCD4"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/man"
+            android:padding="30dp"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textColor="#ffff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Client1"
+            android:gravity="center_vertical"
+            android:textSize="30dp"></TextView>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f9d7db" />
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:background="#0EA0E2"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/wallet" />
+
     <Button
+
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Ví của tôi"
+        android:textColor="#ffff"
         android:id="@+id/btnOpenWallet"
-        android:background="#0EA0E2"
         android:layout_weight="0.1"
+        android:background="#0EA0E2"
         android:textSize="20dp"/>
-    <Button
+    </LinearLayout>
+    <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
         android:background="#0EA0E2"
-        android:text="Chỉnh sửa tài khoản"
-        android:layout_weight="0.1"
-        android:textSize="20dp"/>
-    <Button
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:src="@drawable/tools" />
+        <Button
+            android:textColor="#ffff"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Chỉnh sửa tài khoản"
+            android:layout_weight="0.1"
+            android:background="#0EA0E2"
+            android:textSize="20dp"/>
+    </LinearLayout>
+    <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
         android:background="#0EA0E2"
-        android:text="Tin nhắn"
-        android:layout_weight="0.1"
-        android:textSize="20dp"/>
-    <Button
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:src="@drawable/email" />
+        <Button
+            android:textColor="#ffff"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Tin nhắn"
+            android:layout_weight="0.1"
+            android:background="#0EA0E2"
+            android:textSize="20dp"/>
+    </LinearLayout>
+    <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
         android:background="#0EA0E2"
-        android:text="Thông báo"
-        android:layout_weight="0.1"
-        android:textSize="20dp"/>
-    <Button
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:src="@drawable/notification" />
+        <Button
+            android:textColor="#ffff"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Thông báo"
+            android:layout_weight="0.1"
+            android:background="#0EA0E2"
+            android:textSize="20dp"/>
+    </LinearLayout>
+    <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
         android:background="#0EA0E2"
-        android:text="Cài đặt"
-        android:layout_weight="0.1"
-        android:textSize="20dp"/>
-    <Button
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:src="@drawable/settings" />
+        <Button
+            android:textColor="#ffff"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Cài đặt"
+            android:layout_weight="0.1"
+            android:background="#0EA0E2"
+            android:textSize="20dp"/>
+    </LinearLayout>
+    <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
         android:background="#0EA0E2"
-        android:text="Thoát"
-        android:layout_weight="0.1"
-        android:textSize="20dp"/>
-
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <Button
+            android:textColor="#ffff"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Thoát"
+            android:layout_weight="0.1"
+            android:background="#0EA0E2"
+            android:textSize="20dp"/>
+    </LinearLayout>
 </LinearLayout>
